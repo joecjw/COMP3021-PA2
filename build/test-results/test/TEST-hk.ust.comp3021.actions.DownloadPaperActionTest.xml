@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.actions.DownloadPaperActionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-03-24T07:20:30" hostname="DESKTOP-MMB9NP2" time="0.058">
+<testsuite name="hk.ust.comp3021.actions.DownloadPaperActionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-03-24T17:05:19" hostname="DESKTOP-MMB9NP2" time="0.048">
   <properties/>
-  <testcase name="testDownloadPaperAction_CheckContent()" classname="hk.ust.comp3021.actions.DownloadPaperActionTest" time="0.022"/>
-  <testcase name="testDownloadPaperAction_ActionsSize()" classname="hk.ust.comp3021.actions.DownloadPaperActionTest" time="0.007"/>
-  <testcase name="testDownloadPaperAction_FileExist()" classname="hk.ust.comp3021.actions.DownloadPaperActionTest" time="0.029"/>
+  <testcase name="testDownloadPaperAction_CheckContent()" classname="hk.ust.comp3021.actions.DownloadPaperActionTest" time="0.026"/>
+  <testcase name="testDownloadPaperAction_ActionsSize()" classname="hk.ust.comp3021.actions.DownloadPaperActionTest" time="0.008"/>
+  <testcase name="testDownloadPaperAction_FileExist()" classname="hk.ust.comp3021.actions.DownloadPaperActionTest" time="0.01"/>
   <system-out><![CDATA[@article{Bourdoncle1993,
    abstract = {Abstract interpretation is a formal method that enables the static and automatic determination of run-time properties of programs. This method uses a characterization of program invariants as least and greatest fixed points of continuous functions over complete lattices of program properties. In this paper, we study precise and efficient chaotic iteration strategies for computing such fixed points when lattices are of infinite height and speedup techniques, known as widening and narrowing, have to be used. These strategies are based on a weak topological ordering of the dependency graph of the system of semantic equations associated with the program and minimize the loss in precision due to the use of widening operators. We discuss complexity and implementation issues and give precise upper bounds on the complexity of the intraprocedural and interprocedural abstract interpretation of higher-order programs based on the structure of their control flow graph.},
    author = {François Bourdoncle},

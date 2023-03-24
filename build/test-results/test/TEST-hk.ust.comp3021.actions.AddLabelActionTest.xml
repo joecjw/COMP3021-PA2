@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.actions.AddLabelActionTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-03-24T07:20:30" hostname="DESKTOP-MMB9NP2" time="0.025">
+<testsuite name="hk.ust.comp3021.actions.AddLabelActionTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-03-24T17:05:19" hostname="DESKTOP-MMB9NP2" time="0.026">
   <properties/>
-  <testcase name="testAddLabelAction_LabelsInEngineOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.006"/>
+  <testcase name="testAddLabelAction_LabelsInEngineOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.009"/>
   <testcase name="testAddLabelAction_PaperLabelOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.004"/>
   <testcase name="testAddLabelAction_UserOwnership_Lambda()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.005"/>
-  <testcase name="testAddLabelAction_UserOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.005"/>
-  <testcase name="testAddLabelAction_ActionsSize()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.004"/>
+  <testcase name="testAddLabelAction_UserOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.004"/>
+  <testcase name="testAddLabelAction_ActionsSize()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

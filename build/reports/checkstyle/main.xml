@@ -24,6 +24,7 @@
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\MiniMendeleyEngine.java">
 <error line="19" column="8" severity="error" message="无用导入 - java.util.function.Predicate 。" source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="20" column="8" severity="error" message="无用导入 - java.util.stream.Collectors 。" source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 <error line="21" column="8" severity="error" message="无用导入 - java.util.stream.Stream 。" source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\person\Person.java">

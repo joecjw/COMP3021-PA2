@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.actions.AddCommentActionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-03-24T07:20:30" hostname="DESKTOP-MMB9NP2" time="0.053">
+<testsuite name="hk.ust.comp3021.actions.AddCommentActionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-03-24T17:05:19" hostname="DESKTOP-MMB9NP2" time="0.047">
   <properties/>
-  <testcase name="testAddCommentAction_ActionsSize()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.008"/>
+  <testcase name="testAddCommentAction_ActionsSize()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.013"/>
   <testcase name="testAddCommentAction_UserOwnershipOfCommentOfComment()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.005"/>
-  <testcase name="testAddCommentAction_OwnershipOfCommentOfComment()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.003"/>
-  <testcase name="testAddCommentAction_UserOwnershipOfCommentOfPaper_Lambda()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.006"/>
+  <testcase name="testAddCommentAction_OwnershipOfCommentOfComment()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.005"/>
+  <testcase name="testAddCommentAction_UserOwnershipOfCommentOfPaper_Lambda()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.005"/>
   <testcase name="testAddCommentAction_UserOwnershipOfCommentOfComment_Lambda()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.005"/>
-  <testcase name="testAddCommentAction_OwnershipOfCommentOfPaper()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.004"/>
-  <testcase name="testAddCommentAction_CommentsInEngineOwnership()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.009"/>
-  <testcase name="testAddCommentAction_UserOwnershipOfCommentOfPaper()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.006"/>
+  <testcase name="testAddCommentAction_OwnershipOfCommentOfPaper()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.005"/>
+  <testcase name="testAddCommentAction_CommentsInEngineOwnership()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.003"/>
+  <testcase name="testAddCommentAction_UserOwnershipOfCommentOfPaper()" classname="hk.ust.comp3021.actions.AddCommentActionTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

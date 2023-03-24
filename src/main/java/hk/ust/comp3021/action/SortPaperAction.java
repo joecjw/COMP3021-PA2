@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class SortPaperAction extends Action {
     public enum SortBase {
@@ -81,10 +82,27 @@ public class SortPaperAction extends Action {
      * PS1: if a = null, then a is considered as smaller than non-null b;
      * PS2: if a and b are both null, then they are considered equal;
      */
-    public Comparator<Paper> comparator;// = (paper_1, paper_2)-> {
-
-       // return 0;
-   // };
+    public Comparator<Paper> comparator = (p1, p2)-> {
+        if(this.getBase() == SortBase.ID){
+            return p1.getPaperID().compareTo(p2.getPaperID());
+        } else if (this.getBase() == SortBase.TITLE) {
+            return p1.getTitle().compareTo(p2.getTitle());
+        } else if (this.getBase() == SortBase.AUTHOR) {
+            String s1 = p1.getAuthors().stream()
+                                       .collect(Collectors.joining());
+            String s2 = p2.getAuthors().stream()
+                                       .collect(Collectors.joining());
+            return s1.compareTo(s2);
+        }
+        if(p1.getJournal() == null && p2.getJournal() == null){
+            return 0;
+        }else if(p1.getJournal() == null){
+            return -1;
+        } else if (p2.getJournal() == null) {
+            return 1;
+        }
+        return p1.getJournal().compareTo(p2.getJournal());
+    };
 
     /**
      * TODO `sortFunc` provides a unified interface for sorting papers
@@ -92,6 +110,11 @@ public class SortPaperAction extends Action {
      * @return `actionResult` that contains the papers sorted in the specified order
      */
     public Supplier<List<Paper>> sortFunc = () -> {
+        if(this.getKind() == SortKind.ASCENDING){
+            this.getActionResult().sort(this.comparator);
+        }else {
+            this.getActionResult().sort(this.comparator.reversed());
+        }
         return this.actionResult;
    };
 
