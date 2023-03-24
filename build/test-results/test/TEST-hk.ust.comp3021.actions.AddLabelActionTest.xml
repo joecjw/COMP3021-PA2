@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.actions.AddLabelActionTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2023-03-18T15:09:37" hostname="DESKTOP-MMB9NP2" time="0.034">
+<testsuite name="hk.ust.comp3021.actions.AddLabelActionTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2023-03-24T04:04:15" hostname="DESKTOP-MMB9NP2" time="0.029">
   <properties/>
-  <testcase name="testAddLabelAction_LabelsInEngineOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.009"/>
+  <testcase name="testAddLabelAction_LabelsInEngineOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.007"/>
   <testcase name="testAddLabelAction_PaperLabelOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.004"/>
-  <testcase name="testAddLabelAction_UserOwnership_Lambda()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.009">
+  <testcase name="testAddLabelAction_UserOwnership_Lambda()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.005">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -96,8 +96,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testAddLabelAction_UserOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.003"/>
-  <testcase name="testAddLabelAction_ActionsSize()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.005"/>
+  <testcase name="testAddLabelAction_UserOwnership()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.005"/>
+  <testcase name="testAddLabelAction_ActionsSize()" classname="hk.ust.comp3021.actions.AddLabelActionTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

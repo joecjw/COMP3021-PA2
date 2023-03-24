@@ -53,20 +53,20 @@ public class SearchPaperAction extends Action {
      * @param paper to be appended into `actionResult`
      * @return null
      */
-    public Consumer<Paper> appendToActionResultByLambda;
+    public Consumer<Paper> appendToActionResultByLambda = paper -> this.actionResult.add(paper);
 
     /**
      * TODO `isEqual` determines whether the string is equal to `searchContent`.
      * @param string to be compared with `searchContent`
      * @return boolean variable that indicates whether they are equal
      */
-    public Predicate<String> isEqual;
+    public Predicate<String> isEqual = string -> this.searchContent.equals(string);
 
     /**
      * TODO `isContain` determines whether the array list contains `searchContent`.
      * @param arrayList to be determined for the containing issue
      * @return boolean variable that indicates whether the containing exists
      */
-    public Predicate<ArrayList<String>> isContain;
+    public Predicate<ArrayList<String>> isContain = arrayList -> arrayList.contains(this.searchContent);
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" tests="5" skipped="0" failures="5" errors="0" timestamp="2023-03-18T15:09:37" hostname="DESKTOP-MMB9NP2" time="0.058">
+<testsuite name="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" tests="5" skipped="0" failures="5" errors="0" timestamp="2023-03-24T04:04:15" hostname="DESKTOP-MMB9NP2" time="0.024">
   <properties/>
-  <testcase name="testSortPaperAction_SortByAuthor()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.037">
+  <testcase name="testSortPaperAction_SortByAuthor()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.006">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null
-	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$0(MiniMendeleyEngine.java:219)
+	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$4(MiniMendeleyEngine.java:246)
 	at java.base/java.util.HashMap$EntrySet.forEach(HashMap.java:1126)
-	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:218)
+	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:245)
 	at hk.ust.comp3021.actions.SortPaperActionByLambdaTest.testSortPaperAction_SortByAuthor(SortPaperActionByLambdaTest.java:66)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
@@ -93,9 +93,9 @@
   </testcase>
   <testcase name="testSortPaperAction_SortByTitle()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.004">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null
-	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$0(MiniMendeleyEngine.java:219)
+	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$4(MiniMendeleyEngine.java:246)
 	at java.base/java.util.HashMap$EntrySet.forEach(HashMap.java:1126)
-	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:218)
+	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:245)
 	at hk.ust.comp3021.actions.SortPaperActionByLambdaTest.testSortPaperAction_SortByTitle(SortPaperActionByLambdaTest.java:96)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
@@ -181,11 +181,11 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSortPaperAction_ActionsSize()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.006">
+  <testcase name="testSortPaperAction_ActionsSize()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.003">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null
-	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$0(MiniMendeleyEngine.java:219)
+	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$4(MiniMendeleyEngine.java:246)
 	at java.base/java.util.HashMap$EntrySet.forEach(HashMap.java:1126)
-	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:218)
+	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:245)
 	at hk.ust.comp3021.actions.SortPaperActionByLambdaTest.testSortPaperAction_ActionsSize(SortPaperActionByLambdaTest.java:28)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
@@ -271,11 +271,11 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSortPaperAction_SortByID()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.005">
+  <testcase name="testSortPaperAction_SortByID()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.004">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null
-	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$0(MiniMendeleyEngine.java:219)
+	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$4(MiniMendeleyEngine.java:246)
 	at java.base/java.util.HashMap$EntrySet.forEach(HashMap.java:1126)
-	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:218)
+	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:245)
 	at hk.ust.comp3021.actions.SortPaperActionByLambdaTest.testSortPaperAction_SortByID(SortPaperActionByLambdaTest.java:42)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
@@ -361,11 +361,11 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSortPaperAction_SortByJournal()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.004">
+  <testcase name="testSortPaperAction_SortByJournal()" classname="hk.ust.comp3021.actions.SortPaperActionByLambdaTest" time="0.005">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.function.Consumer.accept(Object)&quot; because &quot;action.appendToActionResultByLambda&quot; is null
-	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$0(MiniMendeleyEngine.java:219)
+	at hk.ust.comp3021.MiniMendeleyEngine.lambda$processSortPaperActionByLambda$4(MiniMendeleyEngine.java:246)
 	at java.base/java.util.HashMap$EntrySet.forEach(HashMap.java:1126)
-	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:218)
+	at hk.ust.comp3021.MiniMendeleyEngine.processSortPaperActionByLambda(MiniMendeleyEngine.java:245)
 	at hk.ust.comp3021.actions.SortPaperActionByLambdaTest.testSortPaperAction_SortByJournal(SortPaperActionByLambdaTest.java:120)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)

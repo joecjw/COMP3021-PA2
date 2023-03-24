@@ -15,12 +15,16 @@
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\SortPaperAction.java">
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\StatisticalInformationAction.java">
+<error line="81" column="41" severity="error" message="名称 &apos;year_journals_count&apos; 必须匹配表达式： &apos;^[a-z][a-zA-Z0-9]*$&apos; 。" source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<error line="85" column="40" severity="error" message="名称 &apos;journals_count&apos; 必须匹配表达式： &apos;^[a-z][a-zA-Z0-9]*$&apos; 。" source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\UploadPaperAction.java">
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\MiniMendeley.java">
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\MiniMendeleyEngine.java">
+<error line="19" column="8" severity="error" message="无用导入 - java.util.function.Predicate 。" source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="20" column="8" severity="error" message="无用导入 - java.util.stream.Stream 。" source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\person\Person.java">
 </file>

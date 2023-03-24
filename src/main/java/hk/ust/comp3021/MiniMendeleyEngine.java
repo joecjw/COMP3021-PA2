@@ -15,6 +15,9 @@ import hk.ust.comp3021.action.SortPaperAction.*;
 import hk.ust.comp3021.action.StatisticalInformationAction.InfoKind;
 import hk.ust.comp3021.utils.UserRegister;
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class MiniMendeleyEngine {
     private final String defaultBibFilePath = "resources/bibdata/PAData.bib";
@@ -194,12 +197,36 @@ public class MiniMendeleyEngine {
         actions.add(action);
         switch (action.getKind()) {
             case ID:
+                this.paperBase.forEach((string, paper) -> {
+                    if(action.isEqual.test(string)){
+                        Consumer<Paper> consumer = action.appendToActionResultByLambda;
+                        consumer.accept(paper);
+                    }
+                });
                 break;
             case TITLE:
+                this.paperBase.forEach((string, paper) -> {
+                    if(action.isEqual.test(paper.getTitle())){
+                        Consumer<Paper> consumer = action.appendToActionResultByLambda;
+                        consumer.accept(paper);
+                    }
+                });
                 break;
             case AUTHOR:
+                this.paperBase.forEach((string, paper) -> {
+                    if(action.isContain.test(paper.getAuthors())){
+                        Consumer<Paper> consumer = action.appendToActionResultByLambda;
+                        consumer.accept(paper);
+                    }
+                });
                 break;
             case JOURNAL:
+                this.paperBase.forEach((string, paper) -> {
+                    if(action.isEqual.test(paper.getJournal())){
+                        Consumer<Paper> consumer = action.appendToActionResultByLambda;
+                        consumer.accept(paper);
+                    }
+                });
                 break;
             default:
                 break;
