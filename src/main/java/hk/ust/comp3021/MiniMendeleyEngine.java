@@ -17,6 +17,7 @@ import hk.ust.comp3021.utils.UserRegister;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MiniMendeleyEngine {
@@ -247,12 +248,87 @@ public class MiniMendeleyEngine {
         });
         switch (action.getBase()) {
             case ID:
+                Comparator<Paper> compareID = (paper_1, paper_2) -> {
+                    if(action.getKind() == SortKind.DESCENDING){
+                        return paper_1.getPaperID().compareToIgnoreCase(paper_2.getPaperID());
+                    }
+                   return -1 * (paper_1.getPaperID().compareToIgnoreCase(paper_2.getPaperID()));
+                };
+
+                action.getActionResult().stream().sorted(compareID).collect(Collectors.toList());
                 break;
             case TITLE:
+                Comparator<Paper> compareTitle = (paper_1, paper_2) -> {
+                    if(action.getKind() == SortKind.DESCENDING){
+                        return paper_1.getTitle().compareToIgnoreCase(paper_2.getTitle());
+                    }
+                    return -1 * (paper_1.getTitle().compareToIgnoreCase(paper_2.getTitle()));
+                };
+
+                action.getActionResult().stream().sorted(compareTitle).collect(Collectors.toList());
                 break;
             case AUTHOR:
+                Comparator<Paper> compareAuthor = (paper_1, paper_2) -> {
+                    if(action.getKind() == SortKind.DESCENDING){
+                       if(paper_1.getAuthors().size() > paper_2.getAuthors().size()){
+                           for(int i = 0; i < paper_2.getAuthors().size(); i++){
+                               if((paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i)) != 0)){
+                                   return paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i));
+                               }
+                           }
+                           return 1;
+                       } else if (paper_1.getAuthors().size() < paper_2.getAuthors().size()) {
+                           for(int i = 0; i < paper_1.getAuthors().size(); i++){
+                               if((paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i)) != 0)){
+                                   return paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i));
+                               }
+                           }
+                           return -1;
+                       }else {
+                           for(int i = 0; i < paper_1.getAuthors().size(); i++){
+                               if((paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i)) != 0)){
+                                   return paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i));
+                               }
+                           }
+                           return 0;
+                       }
+                    }
+
+                    if(paper_1.getAuthors().size() > paper_2.getAuthors().size()){
+                        for(int i = 0; i < paper_2.getAuthors().size(); i++){
+                            if((paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i)) != 0)){
+                                return -1* paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i));
+                            }
+                        }
+                        return -1;
+                    } else if (paper_1.getAuthors().size() < paper_2.getAuthors().size()) {
+                        for(int i = 0; i < paper_1.getAuthors().size(); i++){
+                            if((paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i)) != 0)){
+                                return -1* paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i));
+                            }
+                        }
+                        return 1;
+                    }else {
+                        for(int i = 0; i < paper_1.getAuthors().size(); i++){
+                            if((paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i)) != 0)){
+                                return -1* paper_1.getAuthors().get(i).compareToIgnoreCase(paper_2.getAuthors().get(i));
+                            }
+                        }
+                        return 0;
+                    }
+                };
+
+                action.getActionResult().stream().sorted(compareAuthor).collect(Collectors.toList());
                 break;
             case JOURNAL:
+                Comparator<Paper> compareJournal = (paper_1, paper_2) -> {
+                    if(action.getKind() == SortKind.DESCENDING){
+                        return paper_1.getJournal().compareToIgnoreCase(paper_2.getJournal());
+                    }
+                    return -1 * (paper_1.getJournal().compareToIgnoreCase(paper_2.getJournal()));
+                };
+
+                action.getActionResult().stream().sorted(compareJournal).collect(Collectors.toList());
                 break;
             default:
                 break;

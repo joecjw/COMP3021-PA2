@@ -62,14 +62,14 @@ public class SortPaperAction extends Action {
      * @param paper to be appended into `actionResult`
      * @return null
      */
-    public Consumer<Paper> appendToActionResultByLambda;// = paper -> this.actionResult.add(paper);
+    public Consumer<Paper> appendToActionResultByLambda = paper -> this.actionResult.add(paper);
 
     /**
      * TODO `kindPredicate` determine whether the sort kind is `SortKind.DESCENDING`.
      * @param kind to be compared with `SortKind.DESCENDING`
      * @return boolean variable that indicates whether they are equal
      */
-    public Predicate<SortKind> kindPredicate;// = kind -> this.kind.equals(SortKind.DESCENDING);
+    public Predicate<SortKind> kindPredicate = kind -> this.kind.equals(SortKind.DESCENDING);
 
     /**
      * TODO `comparator` requires you to implement four custom comparators for different scenarios.
@@ -91,8 +91,8 @@ public class SortPaperAction extends Action {
      * @param a list of papers to be sorted into `actionResult`
      * @return `actionResult` that contains the papers sorted in the specified order
      */
-    public Supplier<List<Paper>> sortFunc;// = () -> {
-        //return this.actionResult;
-   // };
+    public Supplier<List<Paper>> sortFunc = () -> {
+        return this.actionResult;
+   };
 
 }

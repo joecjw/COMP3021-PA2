@@ -10,7 +10,9 @@ public class CustomArrayList<E> {
      * PS: `size` is set to the initial value 0
      */
     public CustomArrayList() {
-    	
+        this.elements = new Object[5];
+        this.size = 0;
+        this.capacity = 5;
     }
     
     /**
@@ -18,7 +20,9 @@ public class CustomArrayList<E> {
      * PS: `size` is set to the initial value 0
      */
     public CustomArrayList(int initialCapacity) {
-    	
+        this.elements = new Object[initialCapacity];
+        this.size = 0;
+        this.capacity = initialCapacity;
     }
 
     /**
@@ -28,7 +32,12 @@ public class CustomArrayList<E> {
      * @return null
      */
     public void add(E element) {
-        
+        if(this.size() + 1 == capacity) {
+            resize(capacity * 2);
+        }
+
+        elements[this.size()] = element;
+        size++;
     }
     
     /**
@@ -37,7 +46,12 @@ public class CustomArrayList<E> {
      * @return null
      */
     private void resize(int newCapacity) {
-        
+        Object[] newArray = new Object[newCapacity];
+        for (int i = 0; i < this.size(); i++) {
+            newArray[i] = this.get(i);
+        }
+        elements = newArray;
+        capacity = newCapacity;
     }
 
     /**
@@ -47,7 +61,11 @@ public class CustomArrayList<E> {
      * @return element whose index is `index`
      */
     public E get(int index) {
-        return (E) new Object();
+        if(index < 0 || index > this.size() - 1){
+            return null;
+        }
+
+        return (E) elements[index];
     }
 
     /**
@@ -56,7 +74,7 @@ public class CustomArrayList<E> {
      * @return `size`
      */
     public int size() {
-        return 0;
+        return this.size;
     }
     
     /**
@@ -65,7 +83,10 @@ public class CustomArrayList<E> {
      * @return boolean variable that indicates the list status
      */
     public boolean isEmpty() {
-        return true;
+        if(this.size() == 0){
+            return true;
+        }
+        return false;
     }
     
     /**
@@ -74,6 +95,11 @@ public class CustomArrayList<E> {
      * @return boolean variable that indicates the existence of `obj`
      */
     public boolean contains(E obj) {
-    	return true;
+        for(int i = 0; i < this.size(); i++){
+            if(((E)this.get(i)).equals(obj)){
+                return true;
+            }
+        }
+    	return false;
     }
 }

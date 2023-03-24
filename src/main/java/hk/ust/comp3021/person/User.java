@@ -3,6 +3,8 @@ package hk.ust.comp3021.person;
 import hk.ust.comp3021.resource.Comment;
 import hk.ust.comp3021.resource.Label;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class User extends Person {
     private final Date registerDate;
@@ -40,6 +42,11 @@ public class User extends Person {
      */
     public ArrayList<Comment> searchCommentByPaperObjIDByLambda(String id) {
         ArrayList<Comment> res = new ArrayList<>();
+        Predicate<Comment> isCorrectType = c -> c.getType() == Comment.CommentType.COMMENT_OF_PAPER;
+        Predicate<Comment> isCorrectID = c -> c.getCommentObjId().equals(id);
+        res.addAll(this.userComments.stream()
+                                    .filter(isCorrectType.and(isCorrectID))
+                                    .collect(Collectors.toList()));
         return res;
     }
 
@@ -62,6 +69,11 @@ public class User extends Person {
      */
     public ArrayList<Comment> searchCommentByCommentObjIDByLambda(String id) {
         ArrayList<Comment> res = new ArrayList<>();
+        Predicate<Comment> isCorrectType = c -> c.getType() == Comment.CommentType.COMMENT_OF_COMMENT;
+        Predicate<Comment> isCorrectID = c -> c.getCommentObjId().equals(id);
+        res.addAll(this.userComments.stream()
+                                    .filter(isCorrectType.and(isCorrectID))
+                                    .collect(Collectors.toList()));
         return res;
     }
 
@@ -86,6 +98,10 @@ public class User extends Person {
      */
     public ArrayList<Label> searchLabelByPaperIDByLambda(String id) {
         ArrayList<Label> res = new ArrayList<>();
+        Predicate<Label> isCorrectID = l -> l.getPaperID().equals(id);
+        res.addAll(this.userLabels.stream()
+                                  .filter(isCorrectID)
+                                  .collect(Collectors.toList()));
         return res;
     }
 }
