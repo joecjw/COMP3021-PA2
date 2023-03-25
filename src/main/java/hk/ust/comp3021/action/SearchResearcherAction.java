@@ -97,45 +97,37 @@ public class SearchResearcherAction extends Action {
      * @return `actionResult` that contains the relevant researchers
      */
     public Supplier<HashMap<String, List<Paper>>> searchFunc2 = () -> {
-        List<String> researchersNotFulfillXY = new ArrayList<>();
-        this.getActionResult().forEach((name, paperList) -> {
-            paperList.forEach(paper -> {
-                int numOfWords = 0;
-                if(paper.getAbsContent() == null || paper.getAbsContent().isEmpty()){
-                     return;
-                } else{
-                    boolean word = false;
-                    String absContent = paper.getAbsContent();
-                    int endOfLine = absContent.length() - 1;
-                    for (int i = 0; i < absContent.length(); i++) {
-                        // if the char is a letter, word = true.
-                        if (Character.isLetter(absContent.charAt(i)) && i != endOfLine) {
-                            word = true;
-                            // if char isn't a letter and there have been letters before,
-                            // counter goes up.
-                        } else if (!Character.isLetter(absContent.charAt(i)) && word && absContent.charAt(i) != '\'') {
-                            numOfWords++;
-                            word = false;
-                            // last word of String; if it doesn't end with a non letter, it
-                            // wouldn't count without this.
-                        } else if (Character.isLetter(absContent.charAt(i)) && i == endOfLine) {
-                            numOfWords++;
-                        }
-                    }
-                }
+        Predicate<Paper> paperNotSatisfyX = paper -> {
+            if (paper.getJournal() == null || paper.getJournal().isEmpty()){
+                return true;
+            }
+            if (paper.getJournal().compareTo(this.searchFactorX) == 0){
+                return  false;
+            }
+            return  true;
+        };
 
-                if(paper.getJournal() == null){
-                    researchersNotFulfillXY.add(name);
-                } else if(!paper.getJournal().equalsIgnoreCase(this.getSearchFactorX())
-                            || numOfWords <= Integer.parseInt(this.searchFactorY)){
-                    researchersNotFulfillXY.add(name);
-                }
-            });
+        Predicate<Paper> paperNotSatisfyY = paper -> {
+            if(paper.getAbsContent() == null || paper.getAbsContent().isEmpty()){
+                return  true;
+            }
+            if(paper.getAbsContent().length() > Integer.parseInt(this.searchFactorY)){
+                return false;
+            }
+            return true;
+        };
+
+        Predicate<Map.Entry<String, List<Paper>>> isPaperListEmpty = entry -> {
+            return  entry.getValue().size() == 0;
+        };
+
+        this.getActionResult().entrySet().forEach(entry -> {
+            entry.getValue().removeIf(paperNotSatisfyX.or(paperNotSatisfyY));
         });
-        researchersNotFulfillXY.forEach(name ->{
-            this.actionResult.remove(name);
-        });
-        return  this.actionResult;
+
+        this.getActionResult().entrySet().removeIf(isPaperListEmpty);
+
+        return this.actionResult;
     };
 
 
@@ -180,6 +172,10 @@ public class SearchResearcherAction extends Action {
     }
 
     public double getSimilarity(String str1, String str2) {
+        if(str1 == null || str2 == null || str1.isEmpty() || str2.isEmpty())
+        {
+            return 0.0;
+        }
        return (1 - getLevenshteinDistance(str1,str2) / Math.max(str1.length(), str2.length())) * 100;
     }
 
@@ -195,44 +191,34 @@ public class SearchResearcherAction extends Action {
      */
     public Supplier<HashMap<String, List<Paper>>> searchFunc3 = () ->{
         List<String> researchersNotFulfillXY = new ArrayList<>();
-        List<Paper> paperListOfY = this.getActionResult().get(this.getSearchFactorY());
-        List<List<String>> keyWordsOfY = paperListOfY.stream()
-                .map(paper ->  paper.getKeywords())
-                .collect(Collectors.toList());
         this.actionResult.forEach((name, paperList) -> {
-            AtomicReference<Double> totalSimilarity = new AtomicReference<>(0.0);
-            Predicate<Paper> notPresentInY = paper ->{
-                AtomicBoolean result = new AtomicBoolean(true);
-                paperListOfY.forEach(paperOfY ->{
-                    if(paper.getPaperID().equals(paperOfY.getPaperID())){
-                        result.set(false);
-                    }
-                });
-                return result.get();
-            };
+            List<Paper> paperListOfY = new ArrayList<>();
+            paperListOfY.addAll(this.getActionResult().get(this.getSearchFactorY()));
+            Predicate<Paper> isPaperinY = paper -> paperListOfY.contains(paper);
+            List<Paper> repeatedPapers = paperList.stream()
+                                                  .filter(isPaperinY)
+                                                  .collect(Collectors.toList());
+            paperListOfY.removeAll(repeatedPapers);
+            paperList.removeAll(repeatedPapers);
 
-           List<List<String>> keyWords = paperList.stream()
-                                  .filter(notPresentInY)
-                                  .map(paper -> paper.getKeywords())
-                                  .collect(Collectors.toList());
+            String keyWordsOfY = paperListOfY.stream()
+                                             .map(paper ->  paper.getKeywords().stream().collect(Collectors.joining()))
+                                             .collect(Collectors.joining());
 
-           keyWords.forEach(list ->{
-               list.forEach(str->{
-                    keyWordsOfY.forEach(list2->{
-                        list2.forEach(str2 ->{
-                            totalSimilarity.updateAndGet(v -> v + getSimilarity(str, str2));
-                        });
-                    });
-               });
-           });
-           if(totalSimilarity.get() < Double.parseDouble(this.searchFactorX)){
-               researchersNotFulfillXY.add(name);
-           }
+            String keyWordsOfCurrentResearcher = paperList.stream()
+                                                          .map(paper ->  paper.getKeywords().stream().collect(Collectors.joining()))
+                                                          .collect(Collectors.joining());
+
+            if(getSimilarity(keyWordsOfCurrentResearcher, keyWordsOfY) <= Double.parseDouble(this.searchFactorX)){
+                researchersNotFulfillXY.add(name);
+            }
         });
-        researchersNotFulfillXY.forEach(name ->{
+
+        researchersNotFulfillXY.forEach(name -> {
             this.actionResult.remove(name);
         });
-        return  this.actionResult;
+
+        return this.actionResult;
     };
 
 }
