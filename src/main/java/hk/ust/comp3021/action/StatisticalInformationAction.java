@@ -78,25 +78,25 @@ public class StatisticalInformationAction extends Action {
      * PS: If two journals receive the same number of papers in a given year, then we take the default order.
      */
     public Function<List<Paper>, Map<String, Double>> obtainer2 = paperList -> {
-        Map<Integer,Map<String,Double>> year_journals_count = new HashMap<>();
+        Map<Integer,Map<String,Double>> yearsTojournalsMap = new HashMap<>();
         paperList.forEach(paper -> {
             if(paper.getJournal() != null && !paper.getJournal().isEmpty()){
-                if(year_journals_count.isEmpty() || !year_journals_count.containsKey(paper.getYear())){
-                    Map<String,Double> journals_count = new HashMap<>();
-                    journals_count.put(paper.getJournal(), 1.0);
-                    year_journals_count.put(paper.getYear(), journals_count);
-                } else if (!year_journals_count.isEmpty() && year_journals_count.containsKey(paper.getYear())) {
-                    if(year_journals_count.get(paper.getYear()).containsKey(paper.getJournal())){
-                        year_journals_count.get(paper.getYear()).replace(paper.getJournal()
-                                , year_journals_count.get(paper.getYear()).get(paper.getJournal())+1.0);
-                    } else if (!year_journals_count.get(paper.getYear()).containsKey(paper.getJournal())) {
-                        year_journals_count.get(paper.getYear()).put(paper.getJournal(), 1.0);
+                if(yearsTojournalsMap.isEmpty() || !yearsTojournalsMap.containsKey(paper.getYear())){
+                    Map<String,Double> journalsToCountsMap = new HashMap<>();
+                    journalsToCountsMap.put(paper.getJournal(), 1.0);
+                    yearsTojournalsMap.put(paper.getYear(), journalsToCountsMap);
+                } else if (!yearsTojournalsMap.isEmpty() && yearsTojournalsMap.containsKey(paper.getYear())) {
+                    if(yearsTojournalsMap.get(paper.getYear()).containsKey(paper.getJournal())){
+                        yearsTojournalsMap.get(paper.getYear()).replace(paper.getJournal()
+                                , yearsTojournalsMap.get(paper.getYear()).get(paper.getJournal())+1.0);
+                    } else if (!yearsTojournalsMap.get(paper.getYear()).containsKey(paper.getJournal())) {
+                        yearsTojournalsMap.get(paper.getYear()).put(paper.getJournal(), 1.0);
                     }
                 }
             }
         });
 
-        year_journals_count.forEach((year, map)->{
+        yearsTojournalsMap.forEach((year, map)->{
             Optional<Map.Entry<String, Double>> result =  map.entrySet()
                                                              .stream()
                                                              .max(Comparator.comparing(Map.Entry::getValue));

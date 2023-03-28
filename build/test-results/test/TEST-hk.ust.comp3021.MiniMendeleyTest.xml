@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.MiniMendeleyTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-03-24T17:05:19" hostname="DESKTOP-MMB9NP2" time="0.032">
-  <properties/>
-  <testcase name="testPaperParser()" classname="hk.ust.comp3021.MiniMendeleyTest" time="0.027"/>
-  <testcase name="testUserRegister()" classname="hk.ust.comp3021.MiniMendeleyTest" time="0.005"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

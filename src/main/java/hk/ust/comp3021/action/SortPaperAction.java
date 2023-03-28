@@ -82,27 +82,7 @@ public class SortPaperAction extends Action {
      * PS1: if a = null, then a is considered as smaller than non-null b;
      * PS2: if a and b are both null, then they are considered equal;
      */
-    public Comparator<Paper> comparator = (p1, p2)-> {
-        if(this.getBase() == SortBase.ID){
-            return p1.getPaperID().compareTo(p2.getPaperID());
-        } else if (this.getBase() == SortBase.TITLE) {
-            return p1.getTitle().compareTo(p2.getTitle());
-        } else if (this.getBase() == SortBase.AUTHOR) {
-            String s1 = p1.getAuthors().stream()
-                                       .collect(Collectors.joining());
-            String s2 = p2.getAuthors().stream()
-                                       .collect(Collectors.joining());
-            return s1.compareTo(s2);
-        }
-        if(p1.getJournal() == null && p2.getJournal() == null){
-            return 0;
-        }else if(p1.getJournal() == null){
-            return -1;
-        } else if (p2.getJournal() == null) {
-            return 1;
-        }
-        return p1.getJournal().compareTo(p2.getJournal());
-    };
+    public Comparator<Paper> comparator;
 
     /**
      * TODO `sortFunc` provides a unified interface for sorting papers

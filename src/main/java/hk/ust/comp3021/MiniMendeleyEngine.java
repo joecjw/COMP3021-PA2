@@ -16,9 +16,7 @@ import hk.ust.comp3021.action.StatisticalInformationAction.InfoKind;
 import hk.ust.comp3021.utils.UserRegister;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MiniMendeleyEngine {
     private final String defaultBibFilePath = "resources/bibdata/PAData.bib";
@@ -248,12 +246,57 @@ public class MiniMendeleyEngine {
         });
         switch (action.getBase()) {
             case ID:
+                action.comparator = (p1, p2)-> {
+                    if(p1.getPaperID() == null && p2.getPaperID() == null){
+                        return 0;
+                    }else if(p1.getPaperID() == null){
+                        return -1;
+                    } else if (p2.getPaperID() == null) {
+                        return 1;
+                    }
+                    return p1.getPaperID().compareTo(p2.getPaperID());
+                };
                 break;
             case TITLE:
+                action.comparator = (p1, p2)-> {
+                    if(p1.getTitle() == null && p2.getTitle() == null){
+                        return 0;
+                    }else if(p1.getTitle() == null){
+                        return -1;
+                    } else if (p2.getTitle() == null) {
+                        return 1;
+                    }
+                    return p1.getTitle().compareTo(p2.getTitle());
+                };
                 break;
             case AUTHOR:
+                action.comparator = (p1, p2) -> {
+                    if((p1.getAuthors() == null || p1.getAuthors().isEmpty())
+                            && (p2.getAuthors() == null) || (p2.getAuthors().isEmpty())){
+                        return 0;
+                    }else if(p1.getAuthors() == null || p1.getAuthors().isEmpty()){
+                        return -1;
+                    } else if (p2.getAuthors() == null || p2.getAuthors().isEmpty()) {
+                        return 1;
+                    }
+                    String s1 = p1.getAuthors().stream()
+                            .collect(Collectors.joining());
+                    String s2 = p2.getAuthors().stream()
+                            .collect(Collectors.joining());
+                    return s1.compareTo(s2);
+                };
                 break;
             case JOURNAL:
+                action.comparator = (p1, p2) ->{
+                    if(p1.getJournal() == null && p2.getJournal() == null){
+                        return 0;
+                    }else if(p1.getJournal() == null){
+                        return -1;
+                    } else if (p2.getJournal() == null) {
+                        return 1;
+                    }
+                    return p1.getJournal().compareTo(p2.getJournal());
+                };
                 break;
             default:
                 break;

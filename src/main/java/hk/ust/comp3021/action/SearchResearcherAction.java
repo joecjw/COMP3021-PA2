@@ -3,8 +3,6 @@ package hk.ust.comp3021.action;
 import hk.ust.comp3021.resource.Paper;
 import hk.ust.comp3021.person.User;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -172,8 +170,7 @@ public class SearchResearcherAction extends Action {
     }
 
     public double getSimilarity(String str1, String str2) {
-        if(str1 == null || str2 == null || str1.isEmpty() || str2.isEmpty())
-        {
+        if(str1 == null || str2 == null || str1.isEmpty() || str2.isEmpty()) {
             return 0.0;
         }
        return (1 - getLevenshteinDistance(str1,str2) / Math.max(str1.length(), str2.length())) * 100;
@@ -194,12 +191,19 @@ public class SearchResearcherAction extends Action {
         this.actionResult.forEach((name, paperList) -> {
             List<Paper> paperListOfY = new ArrayList<>();
             paperListOfY.addAll(this.getActionResult().get(this.getSearchFactorY()));
+
+            System.out.println("Paper List of Y: " +paperListOfY);
+            System.out.println("Paper List of " +name+" : " +paperList);
+
             Predicate<Paper> isPaperinY = paper -> paperListOfY.contains(paper);
             List<Paper> repeatedPapers = paperList.stream()
                                                   .filter(isPaperinY)
                                                   .collect(Collectors.toList());
             paperListOfY.removeAll(repeatedPapers);
             paperList.removeAll(repeatedPapers);
+
+            System.out.println("Paper List of Y after removed: " +paperListOfY);
+            System.out.println("Paper List of " +name+" after removed: " +paperList);
 
             String keyWordsOfY = paperListOfY.stream()
                                              .map(paper ->  paper.getKeywords().stream().collect(Collectors.joining()))
@@ -209,6 +213,12 @@ public class SearchResearcherAction extends Action {
                                                           .map(paper ->  paper.getKeywords().stream().collect(Collectors.joining()))
                                                           .collect(Collectors.joining());
 
+            System.out.println("Keywords of Y: "+keyWordsOfY);
+            System.out.println("Keywords of " +name+": "+keyWordsOfCurrentResearcher);
+            System.out.println("Similarity = " +getSimilarity(keyWordsOfCurrentResearcher, keyWordsOfY));
+            System.out.println();
+            System.out.println();
+
             if(getSimilarity(keyWordsOfCurrentResearcher, keyWordsOfY) <= Double.parseDouble(this.searchFactorX)){
                 researchersNotFulfillXY.add(name);
             }
@@ -217,6 +227,8 @@ public class SearchResearcherAction extends Action {
         researchersNotFulfillXY.forEach(name -> {
             this.actionResult.remove(name);
         });
+        this.actionResult.forEach((name, list) -> {System.out.println(name);});
+
 
         return this.actionResult;
     };
