@@ -90,7 +90,7 @@ public class SearchResearcherAction extends Action {
 
     /**
      * TODO `searchFunc2` indicates the second searching criterion,
-     *    i.e., Search researchers whose papers published in the journal X have abstracts more than Y words.
+     *    i.e., Search researchers whose papers published in the journal X have abstracts of the length more than Y.
      * @param null
      * @return `actionResult` that contains the relevant researchers
      */
@@ -130,50 +130,37 @@ public class SearchResearcherAction extends Action {
 
 
     public static int getLevenshteinDistance(String str1, String str2) {
-        int len1 = str1.length();
-        int len2 = str2.length();
+        int m = str1.length();
+        int n = str2.length();
+        int[][] dp = new int[m + 1][n + 1]; // dp[i][j] := min # of operations to convert str1[0..i) to str2[0..j)
 
-        // len1+1, len2+1, because finally return dp[len1][len2]
-        int[][] dp = new int[len1 + 1][len2 + 1];
-
-        for (int i = 0; i <= len1; i++) {
+        for (int i = 1; i <= m; ++i){
             dp[i][0] = i;
         }
 
-        for (int j = 0; j <= len2; j++) {
+        for (int j = 1; j <= n; ++j){
             dp[0][j] = j;
         }
 
-        //iterate though, and check last char
-        for (int i = 0; i < len1; i++) {
-            char c1 = str1.charAt(i);
-            for (int j = 0; j < len2; j++) {
-                char c2 = str2.charAt(j);
-
-                //if last two chars equal
-                if (c1 == c2) {
-                    //update dp value for +1 length
-                    dp[i + 1][j + 1] = dp[i][j];
+        for (int i = 1; i <= m; ++i){
+            for (int j = 1; j <= n; ++j){
+                if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1]; //no operation
                 } else {
-                    int replace = dp[i][j] + 1;
-                    int insert = dp[i][j + 1] + 1;
-                    int delete = dp[i + 1][j] + 1;
-
-                    int min = replace > insert ? insert : replace;
-                    min = delete > min ? min : delete;
-                    dp[i + 1][j + 1] = min;
+                    dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + 1;
                 }
             }
         }
 
-        return dp[len1][len2];
+        return dp[m][n];
     }
 
     public double getSimilarity(String str1, String str2) {
         if(str1 == null || str2 == null || str1.isEmpty() || str2.isEmpty()) {
             return 0.0;
         }
-       return (1 - getLevenshteinDistance(str1,str2) / Math.max(str1.length(), str2.length())) * 100;
+
+       return (1 - (double)getLevenshteinDistance(str1,str2) / (double)Math.max(str1.length(), str2.length())) * 100;
     }
 
     /**
@@ -187,49 +174,42 @@ public class SearchResearcherAction extends Action {
      *     2) Note that we need to remove paper(s) from the paper list of whoever are co-authors with the given researcher.
      */
     public Supplier<HashMap<String, List<Paper>>> searchFunc3 = () ->{
-        List<String> researchersNotFulfillXY = new ArrayList<>();
+        HashMap<String, List<Paper>> result = new HashMap();
         this.actionResult.forEach((name, paperList) -> {
             List<Paper> paperListOfY = new ArrayList<>();
             paperListOfY.addAll(this.getActionResult().get(this.getSearchFactorY()));
 
-            System.out.println("Paper List of Y: " +paperListOfY);
-            System.out.println("Paper List of " +name+" : " +paperList);
-
-            Predicate<Paper> isPaperinY = paper -> paperListOfY.contains(paper);
-            List<Paper> repeatedPapers = paperList.stream()
-                                                  .filter(isPaperinY)
-                                                  .collect(Collectors.toList());
-            paperListOfY.removeAll(repeatedPapers);
-            paperList.removeAll(repeatedPapers);
-
-            System.out.println("Paper List of Y after removed: " +paperListOfY);
-            System.out.println("Paper List of " +name+" after removed: " +paperList);
-
-            String keyWordsOfY = paperListOfY.stream()
-                                             .map(paper ->  paper.getKeywords().stream().collect(Collectors.joining()))
-                                             .collect(Collectors.joining());
-
-            String keyWordsOfCurrentResearcher = paperList.stream()
-                                                          .map(paper ->  paper.getKeywords().stream().collect(Collectors.joining()))
-                                                          .collect(Collectors.joining());
-
-            System.out.println("Keywords of Y: "+keyWordsOfY);
-            System.out.println("Keywords of " +name+": "+keyWordsOfCurrentResearcher);
-            System.out.println("Similarity = " +getSimilarity(keyWordsOfCurrentResearcher, keyWordsOfY));
-            System.out.println();
-            System.out.println();
-
-            if(getSimilarity(keyWordsOfCurrentResearcher, keyWordsOfY) <= Double.parseDouble(this.searchFactorX)){
-                researchersNotFulfillXY.add(name);
-            }
+            paperList.forEach(paper -> {
+                paperListOfY.forEach(paperOfY -> {
+                    String keyWordsOfCurrentPaper = paper.getKeywords().stream().collect(Collectors.joining());
+                    String keyWordsOfCurrentPaperOfY = paperOfY.getKeywords().stream().collect(Collectors.joining());
+                    keyWordsOfCurrentPaper = keyWordsOfCurrentPaper.strip().toLowerCase();
+                    keyWordsOfCurrentPaperOfY = keyWordsOfCurrentPaperOfY.strip().toLowerCase();
+                    double sim = getSimilarity(keyWordsOfCurrentPaper, keyWordsOfCurrentPaperOfY);
+                    if(sim > Double.parseDouble(this.searchFactorX) && !result.containsKey(name) && !paperListOfY.contains(paper)){
+                        if(result.isEmpty()){
+                            result.put(name, new ArrayList<>());
+                            result.get(name).add(paper);
+                        }else {
+                            if(result.containsKey(name)){
+                                if(result.values().stream().filter(paperList1 -> paperList1.contains(paper))
+                                        .collect(Collectors.toList()).size() == 0){
+                                    result.get(name).add(paper);
+                                }
+                            }else{
+                                result.put(name, new ArrayList<>());
+                                if(result.values().stream().filter(paperList1 -> paperList1.contains(paper))
+                                        .collect(Collectors.toList()).size() == 0){
+                                    result.get(name).add(paper);
+                                }
+                            }
+                        }
+                    }
+                });
+            });
         });
-
-        researchersNotFulfillXY.forEach(name -> {
-            this.actionResult.remove(name);
-        });
-        this.actionResult.forEach((name, list) -> {System.out.println(name);});
-
-
+        this.actionResult.clear();
+        this.actionResult.putAll(result);
         return this.actionResult;
     };
 

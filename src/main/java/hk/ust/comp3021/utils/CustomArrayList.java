@@ -27,7 +27,7 @@ public class CustomArrayList<E> {
 
     /**
      * TODO `add` appends new element into `elements`. Once `size` is equal to `capacity`,
-     *  we need to resize `elements` to twice its original size.
+     *       we need to resize `elements` to twice its original size.
      * @param element to be added into `elements`
      * @return null
      */
@@ -39,6 +39,7 @@ public class CustomArrayList<E> {
         elements[this.size()] = element;
         size++;
     }
+
     /**
      * TODO `resize` modifies the size of `elements`
      * @param newCapacity to indicate the new capacity of `elements`
@@ -55,7 +56,7 @@ public class CustomArrayList<E> {
 
     /**
      * TODO `get` obtains target element based on the given index. Once the index is not within [0, size),
-     *  we need to return null.
+     *       we need to return null.
      * @param index to indicate the element position
      * @return element whose index is `index`
      */
@@ -75,6 +76,7 @@ public class CustomArrayList<E> {
     public int size() {
         return this.size;
     }
+
     /**
      * TODO `isEmpty` determine whether the list is empty
      * @param null
@@ -86,6 +88,7 @@ public class CustomArrayList<E> {
         }
         return false;
     }
+
     /**
      * TODO `contains` determine whether the input is in `elements`
      * @param obj to be determined
@@ -99,3 +102,4 @@ public class CustomArrayList<E> {
         }return false;
     }
 }
+

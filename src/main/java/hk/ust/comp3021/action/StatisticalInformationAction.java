@@ -75,7 +75,9 @@ public class StatisticalInformationAction extends Action {
      *    i.e., Obtain the journals that receive the most papers every year.
      * @param a list of papers to be profiled
      * @return `actionResult` that contains the target result
-     * PS: If two journals receive the same number of papers in a given year, then we take the default order.
+     * PS1: If two journals receive the same number of papers in a given year, then we take the default order.
+     * PS2: We keep the chronological order of year so that the results of the subsequent year will replace the
+     *       results of the previous year if one journal receives the most papers in two or more different years.
      */
     public Function<List<Paper>, Map<String, Double>> obtainer2 = paperList -> {
         Map<Integer,Map<String,Double>> yearsTojournalsMap = new HashMap<>();

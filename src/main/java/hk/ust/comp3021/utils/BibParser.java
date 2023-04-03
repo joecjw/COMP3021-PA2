@@ -6,7 +6,6 @@ import java.io.*;
 
 public class BibParser {
     private final String bibfilePath;
-
     private boolean isErr;
     private final HashMap<String, Paper> result;
 

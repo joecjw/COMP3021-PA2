@@ -56,7 +56,7 @@ public class SearchResearcherActionByLambdaTest {
     // @Tag(TestKind.PUBLIC)
     @Test
     void testSearchResearcherAction_SearchByJournalPublishTimes() {
-    	MiniMendeleyEngine engine = new MiniMendeleyEngine();
+     	MiniMendeleyEngine engine = new MiniMendeleyEngine();
         String userID = "User_" + engine.getUsers().size();
         User user = engine.processUserRegister(userID, "testUser", new Date());
 
@@ -88,15 +88,15 @@ public class SearchResearcherActionByLambdaTest {
         SearchResearcherAction action1 = new SearchResearcherAction("Action_1", user, new Date(), "28", "M. Martel", SearchResearcherKind.KEYWORD_SIMILARITY);
         HashMap<String, List<Paper>> searchResult1 = engine.processSearchResearcherActionByLambda(user, action1);
 
-        assertEquals(searchResult1.size(), 5);
-        assertEquals(searchResult1.get("Wei Ngan Chin").get(0).getTitle(), "Loop invariant synthesis in a combined abstract domain");
-        assertEquals(searchResult1.containsKey("Shengchao Qin"), true);
-        assertEquals(searchResult1.containsKey("Xin Chen"), true);
+       assertEquals(searchResult1.size(), 5);
+       assertEquals(searchResult1.get("Wei Ngan Chin").get(0).getTitle(), "Loop invariant synthesis in a combined abstract domain");
+       assertEquals(searchResult1.containsKey("Shengchao Qin"), true);
+       assertEquals(searchResult1.containsKey("Xin Chen"), true);
 
-        SearchResearcherAction action2 = new SearchResearcherAction("Action_2", user, new Date(), "50", "Vivien Maisonneuve", SearchResearcherKind.KEYWORD_SIMILARITY);
-        HashMap<String, List<Paper>> searchResult2 = engine.processSearchResearcherActionByLambda(user, action2);
+       SearchResearcherAction action2 = new SearchResearcherAction("Action_2", user, new Date(), "50", "Vivien Maisonneuve", SearchResearcherKind.KEYWORD_SIMILARITY);
+       HashMap<String, List<Paper>> searchResult2 = engine.processSearchResearcherActionByLambda(user, action2);
 
-        assertEquals(searchResult2.size(), 0);
+       assertEquals(searchResult2.size(), 0);
 
         SearchResearcherAction action3 = new SearchResearcherAction("Action_3", user, new Date(), "35", "Woosuk Lee", SearchResearcherKind.KEYWORD_SIMILARITY);
         HashMap<String, List<Paper>> searchResult3 = engine.processSearchResearcherActionByLambda(user, action3);

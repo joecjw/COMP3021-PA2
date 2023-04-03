@@ -11,10 +11,8 @@
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\SearchPaperAction.java">
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\SearchResearcherAction.java">
-<error line="230" column="51" severity="error" message="第 51 个字符 &apos;{&apos; 后应换行。" source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\SortPaperAction.java">
-<error line="10" column="8" severity="error" message="无用导入 - java.util.stream.Collectors 。" source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 </file>
 <file name="C:\HKUST\OneDrive - HKUST Connect\Year 3\Sem 2\COMP 3021\COMP3021-PA2\src\main\java\hk\ust\comp3021\action\StatisticalInformationAction.java">
 </file>
