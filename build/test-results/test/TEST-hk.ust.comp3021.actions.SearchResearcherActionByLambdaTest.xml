@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-03T15:42:14" hostname="DESKTOP-MMB9NP2" time="0.115">
+<testsuite name="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-09T10:56:39" hostname="DESKTOP-MMB9NP2" time="0.17">
   <properties/>
-  <testcase name="testSearchResearcherAction_ActionsSize()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.01"/>
-  <testcase name="testSearchResearcherAction_SearchByKeywordSimilarity()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.093"/>
-  <testcase name="testSearchResearcherAction_SearchByPaperWithinYear()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.005"/>
-  <testcase name="testSearchResearcherAction_SearchByJournalPublishTimes()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.006"/>
+  <testcase name="testSearchResearcherAction_ActionsSize()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.012"/>
+  <testcase name="testSearchResearcherAction_SearchByKeywordSimilarity()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.132"/>
+  <testcase name="testSearchResearcherAction_SearchByPaperWithinYear()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.007"/>
+  <testcase name="testSearchResearcherAction_SearchByJournalPublishTimes()" classname="hk.ust.comp3021.actions.SearchResearcherActionByLambdaTest" time="0.017"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

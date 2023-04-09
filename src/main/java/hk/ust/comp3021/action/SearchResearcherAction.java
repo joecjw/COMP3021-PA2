@@ -109,7 +109,7 @@ public class SearchResearcherAction extends Action {
             if(paper.getAbsContent() == null || paper.getAbsContent().isEmpty()){
                 return  true;
             }
-            if(paper.getAbsContent().length() > Integer.parseInt(this.searchFactorY)){
+            if(paper.getAbsContent().length() >= Integer.parseInt(this.searchFactorY)){
                 return false;
             }
             return true;
@@ -183,10 +183,8 @@ public class SearchResearcherAction extends Action {
                 paperListOfY.forEach(paperOfY -> {
                     String keyWordsOfCurrentPaper = paper.getKeywords().stream().collect(Collectors.joining());
                     String keyWordsOfCurrentPaperOfY = paperOfY.getKeywords().stream().collect(Collectors.joining());
-                    keyWordsOfCurrentPaper = keyWordsOfCurrentPaper.strip().toLowerCase();
-                    keyWordsOfCurrentPaperOfY = keyWordsOfCurrentPaperOfY.strip().toLowerCase();
                     double sim = getSimilarity(keyWordsOfCurrentPaper, keyWordsOfCurrentPaperOfY);
-                    if(sim > Double.parseDouble(this.searchFactorX) && !result.containsKey(name) && !paperListOfY.contains(paper)){
+                    if(sim >= Double.parseDouble(this.searchFactorX) && !result.containsKey(name) && !paperListOfY.contains(paper)){
                         if(result.isEmpty()){
                             result.put(name, new ArrayList<>());
                             result.get(name).add(paper);
